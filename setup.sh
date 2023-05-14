@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # setup and activate a venv for all files in this tutorial
 python3 -m venv venv
