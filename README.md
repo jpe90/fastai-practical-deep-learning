@@ -7,6 +7,8 @@ python3 -m venv venv
 source venv/bin/activate
 pip install fastai
 pip install duckduckgo_search
+pip install plotly
+pip install statsmodels
 ```
 
 tested on macOS and linux, does not work on windows without WSL
