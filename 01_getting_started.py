@@ -1,22 +1,28 @@
 import os
 from duckduckgo_search import ddg_images
 from fastcore.all import *
-
-def search_images(term, max_images=200): return L(ddg_images(term, max_results=max_images)).itemgot('image')
-urls = search_images('bird photos', max_images=1)
-urls[0]
 from fastdownload import download_url
+from matplotlib import pyplot
+from fastai.vision.all import *
+from time import sleep
+
+
+def search_images(term, max_images=200):
+    return L(ddg_images(term, max_results=max_images)).itemgot('image')
+
+urls = search_images('bird photos', max_images=1)
+print(urls[0])
+
 dest = 'bird.jpg'
 download_url(urls[0], dest, show_progress=False)
+Image.open(dest).show()
 
-from fastai.vision.all import *
-im = Image.open(dest)
-im.show()
-download_url(search_images('forest photos', max_images=1)[0], 'forest.jpg', show_progress=False)
-Image.open('forest.jpg').show()
+dest = 'forest.jpg'
+download_url(search_images('forest photos', max_images=1)[0], dest, show_progress=False)
+Image.open(dest).show()
+
 searches = 'forest','bird'
 path = Path('bird_or_not')
-from time import sleep
 
 for o in searches:
     dest = (path/o)
@@ -42,6 +48,7 @@ dls = DataBlock(
 ).dataloaders(path)
 
 dls.show_batch(max_n=6)
+pyplot.show()
 
 learn = vision_learner(dls, resnet18, metrics=error_rate)
 learn.fine_tune(3)
