@@ -1,7 +1,12 @@
-fastai's [practical deep learning for coders](https://course.fast.ai/) displays course lessons as jupyter notebooks
+python scripts from fastai's [practical deep learning for coders](https://course.fast.ai/) without jupyter notebooks
 
-this repository aims to provide the course material as python scripts you can run on your system
+i would recommend you install dependencies in a venv:
 
-run `./install.sh` to set up a venv and install necessary dependencies. then activate the venv with `source venv/bin/activate` and run each lesson's python script.
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install fastai
+pip install duckduckgo_search
+```
 
-tested on macOS and linux
+tested on macOS and linux, does not work on windows without WSL
